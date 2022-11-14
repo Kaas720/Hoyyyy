@@ -1,0 +1,30 @@
+<div class="contenedorPrimero">
+    <div class="styloCOntainersaCeptarCmpra">
+        <h1>Aceptar compra</h1>
+        <h3>Elija su forma de pago</h3>
+        <mat-radio-group aria-label="Seleccionar">
+            <mat-radio-button (change)="radioChange($event)" value="1" >
+                Efectivo
+            </mat-radio-button>
+            <br><br>
+            <mat-radio-button (change)="radioChange($event)" value="2" >
+                Transferencia bancaria
+            </mat-radio-button>
+        </mat-radio-group>
+        <br><br>
+        <h3>Dirreccion de entrega:</h3>
+        <mat-select [(value)]="selected" placeholder="Selecionar...">
+            <mat-option value="{{datos_cliente[0].direccionDomicilio}}" >{{datos_cliente[0].direccionDomicilio}}</mat-option>
+            <mat-option value="{{datos_cliente[0].direccionTrabajo}}">{{datos_cliente[0].direccionTrabajo}}</mat-option>
+        </mat-select>
+        <br><br>
+        <h3>Numero contacto: {{datos_cliente[0].telefono}}</h3>
+        <div class="contenedores-botones">
+            <div class="dposicionBoton">
+                <button [disabled]="selected=='default' || operacionSeleccionada == ''" mat-stroked-button color="primary" [routerLink]="['/cliente/carrito']">Aceptar</button>
+                &nbsp; &nbsp;
+                <button mat-stroked-button color="accent" (click)="regresarPaginaAnterior()">Regresar</button>
+            </div>
+        </div>
+    </div>
+</div>

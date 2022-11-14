@@ -1,0 +1,114 @@
+<button>
+    Nuevo
+</button>
+<div style="width: 100%">
+    <div style="width: 450px; margin: 0 auto; padding: 10px; border: 1px solid rgb(110, 110, 110); border-radius: 10px;">
+        <form style="margin: 0 auto;" #formDirective="ngForm" (ngSubmit)="enviarDatos()"  [formGroup]="DataTarea">
+            <div style="width: max-content; margin:0 auto">
+                <mat-form-field class="estyleFormCliente">
+                    <input  type="text" matInput placeholder="Nombre" value="{{enviarTarea.nombreTarea}}" formControlName="NombreTarea">
+                    <mat-error *ngIf="DataTarea.get('NombreTarea')?.errors?.['required']">
+                        El nombre de la tarea es requerido.
+                    </mat-error>
+                    <mat-error *ngIf="DataTarea.get('NombreTarea')?.errors?.['maxlength']">
+                        El nombre de la tarea sobrepasa 50 caracteres.
+                    </mat-error>
+                </mat-form-field>
+                <br><br>
+                <mat-form-field class="estyleFormCliente">
+                    <input matInput placeholder="Drescripción" value="{{enviarTarea.descripcionTarea}}" formControlName="descripcionTarea">
+                    <mat-error *ngIf="DataTarea.get('descripcionTarea')?.errors?.['required']">
+                        La descripcion de la tarea es requerido.
+                    </mat-error>
+                    <mat-error *ngIf="DataTarea.get('descripcionTarea')?.errors?.['maxlength']">
+                        La descripcion de la tarea sobrepasa 500 caracteres.
+                    </mat-error>
+                </mat-form-field>
+                <br><br>
+                    <h3>Tipo tarea:</h3>
+                    <div *ngIf="!nuevo; else InputNuevo">
+                        <mat-select [(value)]="selected" placeholder="Selecionar...">
+                            <mat-option *ngFor="let tTareas of tiposTareasList" value="{{tTareas.idTipoTarea}}" >{{tTareas.descripcionTipoTarea}}</mat-option>
+                        </mat-select>
+                    </div>
+                    <ng-template #InputNuevo class="estyleFormCliente">
+                        <input [readonly]="true" matInput value="{{TipoTareaDescripcion}}">
+                    </ng-template>
+                <br><br>
+                <mat-form-field class="estyleFormCliente">
+                    <input [readonly]="nuevo" matInput placeholder="Código de referencia" value="{{enviarTarea.codigoReferencia}}" formControlName="codigoReferencia">
+                    <mat-error *ngIf="DataTarea.get('codigoReferencia')?.errors?.['required']">
+                        El código de referencia es requerido
+                    </mat-error>
+                    <mat-error *ngIf="DataTarea.get('codigoReferencia')?.errors?.['maxlength']">
+                        El código de referencia sobrepasa 50 caracteres.
+                    </mat-error>
+                </mat-form-field>
+                <br><br>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: max-content; margin: 0 auto">
+                    <button  [disabled] = "!DataTarea.valid"  mat-flat-button color="primary">
+                        {{botonMensaje}}
+                    </button>
+                    &nbsp;
+                    <button (click)="NuevaTarea()" [disabled]="!nuevo" mat-flat-button color="accent">
+                        Nuevo
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</div>
+<br><br>
+<div>
+    <div style="width: 100%">
+        <div style="width: 70%; margin: 0 auto; background-color: blue;">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+              
+                  <ng-container matColumnDef="idTarea">
+                    <th mat-header-cell *matHeaderCellDef> Id. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.idTarea}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="nombreTarea">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombreTarea}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="descripcionTarea">
+                    <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+                    <td mat-cell *matCellDef="let element"> {{element.decripcionTarea}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="tipoTarea">
+                    <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombreTipotarea}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="codeTarea">
+                    <th mat-header-cell *matHeaderCellDef> cod. Referencia </th>
+                    <td mat-cell *matCellDef="let element"> {{element.codigoreferencia}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="opciones">
+                    <th mat-header-cell *matHeaderCellDef> Opciones </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <button (click)="enviarInformacionForm(element,formDirective)" mat-raised-button color="primary">Editar</button> 
+                        &nbsp;
+                        <button (click)="eliminarTarea(element.idTarea)" mat-raised-button color="accent">Eliminar</button>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                               showFirstLastButtons 
+                               aria-label="Select page of periodic elements">
+                </mat-paginator>
+              </div>
+        </div>
+    </div> 
+</div>
+<!-- ––> -->

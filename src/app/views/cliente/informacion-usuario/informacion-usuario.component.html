@@ -1,0 +1,68 @@
+<div style="width: 100%;">
+    <br>
+    <br>
+    <br>
+    <div style="width: 450px; margin: 0 auto; padding: 10px; border: 1px solid rgb(110, 110, 110); border-radius: 10px;">
+        <form [formGroup]="dataUser">
+            <mat-form-field class="estyleFormCliente">
+                <input  type="text" matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="datos_cliente[0].nombre">
+                <mat-error *ngIf="dataUser.get('nombre')?.invalid">
+                    El nombre del usuario es requerido
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input matInput placeholder="Apellido" formControlName="apellido" [(ngModel)]="datos_cliente[0].apellido">
+                <mat-error *ngIf="dataUser.get('apellido')?.invalid">
+                    El apellido del usuario es requerido
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input matInput placeholder="Télefono" formControlName="telefono"  [(ngModel)]="datos_cliente[0].telefono">
+                <mat-error *ngIf="dataUser.get('telefono')?.errors?.['required']">
+                    El telefono del usuario es requerido
+                </mat-error>
+                <mat-error *ngIf="dataUser.get('telefono')?.errors?.['pattern']">
+                    El telefono del usuario es incorrecto
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input type="email" matInput placeholder="Correo" formControlName="correo" [(ngModel)]="datos_cliente[0].correo">
+                <mat-error *ngIf="dataUser.get('correo')?.errors?.['required']">
+                    El correo del usuario es requerido
+                </mat-error>
+                <mat-error *ngIf="dataUser.get('correo')?.errors?.['email']">
+                    El correo del usuario es incorrecto
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input matInput placeholder="Dirección domicilio" formControlName="dDomicilio" [(ngModel)]="datos_cliente[0].direccionDomicilio">
+                <mat-error *ngIf="dataUser.get('dDomicilio')?.invalid">
+                    La dirección del usuario es requerido
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input matInput placeholder="Dirección trabajo" formControlName="dTrabajo"  [(ngModel)]="datos_cliente[0].direccionTrabajo">
+                <mat-error *ngIf="dataUser.get('dTrabajo')?.invalid">
+                    La dirección del usuario es requerido
+                </mat-error>
+            </mat-form-field>
+            <br>
+        </form>
+        <div style="width: 100%;">
+            <div style="width: max-content; margin: 0 auto">
+                <button (click)="EnviarDatos()" [disabled] = "!dataUser.valid || verificarSiexisteCambios()" mat-flat-button color="primary">
+                    Guardar
+                </button>
+                &nbsp;
+                <button (click)="RegresarPaginaAnterior()" mat-flat-button color="accent">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

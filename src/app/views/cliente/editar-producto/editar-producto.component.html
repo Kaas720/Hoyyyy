@@ -1,0 +1,61 @@
+
+<div style="width: 100%;">
+    <button (click)="cerrarDialogoEditar()" style="float: right;">Cerrar</button>
+    <h2 style="text-align: center">Editar Producto</h2>
+    <div style="width: 400px; margin: 0 auto; padding-top: 10px; padding-bottom: 10px; padding-left: 30px; padding-right: 30px; border: 1px solid rgb(110, 110, 110); border-radius: 10px;">
+        <form style="margin: 0 auto;" [formGroup]="dataProducto">
+            <mat-form-field class="estyleFormCliente">
+                <input  type="text" matInput placeholder="Nombre" formControlName="nombre" [ngModel]="productCopy.descripcion">
+                <mat-error *ngIf="dataProducto.get('nombre')?.invalid">
+                    El nombre del producto es requerido
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input #url type="text" matInput placeholder="Imagen Url" formControlName="url" [ngModel]="data.url">
+                <mat-error *ngIf="dataProducto.get('url')?.invalid">
+                    El url de la imagen del producto es requerido
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <div style="width:100%">
+                <div style="width:max-content; margin: 0 auto">
+                    <img src="{{url.value}}" width="200px" alt="Imagen invalida copiar bien la url">
+                </div>
+            </div>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input type="number" matInput placeholder="Cantidad disponible" min="1" formControlName="cantidadDisponible" [ngModel]="data.cantidadDisponible">
+                <mat-error *ngIf="dataProducto.get('cantidadDisponible')?.errors?.['required']">
+                    La cantidad del producto es requerido
+                </mat-error>
+                <mat-error *ngIf="dataProducto.get('cantidadDisponible')?.errors?.['min']">
+                    La cantidad del producto es incorrecto
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input type="number"  matInput placeholder="Precio producto" min="1" formControlName="precio" [ngModel]="data.precio">
+                <mat-error *ngIf="dataProducto.get('precio')?.errors?.['required']">
+                    El precio del producto es requerido
+                </mat-error>
+                <mat-error *ngIf="dataProducto.get('precio')?.errors?.['min']">
+                    El precio del producto es incorrecto
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+        </form>
+        <div style="width: 100%;">
+            <div style="width: max-content; margin: 0 auto">
+                <button (click)="editarProducto()"  [disabled] = "!dataProducto.valid || comprobarIgualdad()" mat-flat-button color="primary">
+                    Guardar
+                </button>
+                &nbsp;
+                <button (click)="limpiarFormProducto()" mat-flat-button color="accent">
+                    Limpiar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

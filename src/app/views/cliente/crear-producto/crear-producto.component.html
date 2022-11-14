@@ -1,0 +1,55 @@
+
+<div style="width: 80%;">
+    <h2>Agregar Producto</h2>
+    <br>
+    <div style="width: 450px; margin: 0 auto; padding: 10px; border: 1px solid rgb(110, 110, 110); border-radius: 10px;">
+        <form [formGroup]="dataProducto">
+            <mat-form-field class="estyleFormCliente">
+                <input  type="text" matInput placeholder="Nombre" formControlName="nombre">
+                <mat-error *ngIf="dataProducto.get('nombre')?.invalid">
+                    El nombre del producto es requerido
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input  type="text" matInput placeholder="Imagen Url" formControlName="url">
+                <mat-error *ngIf="dataProducto.get('nombre')?.invalid">
+                    El url de la imagen del producto es requerido
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input type="number" matInput placeholder="Cantidad disponible" min="1" formControlName="cantidadDisponible">
+                <mat-error *ngIf="dataProducto.get('cantidadDisponible')?.errors?.['required']">
+                    La cantidad del producto es requerido
+                </mat-error>
+                <mat-error *ngIf="dataProducto.get('cantidadDisponible')?.errors?.['min']">
+                    La cantidad del producto es incorrecto
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="estyleFormCliente">
+                <input type="number"  matInput placeholder="Precio producto" min="1" formControlName="precio" >
+                <mat-error *ngIf="dataProducto.get('precio')?.errors?.['required']">
+                    El precio del producto es requerido
+                </mat-error>
+                <mat-error *ngIf="dataProducto.get('precio')?.errors?.['min']">
+                    El precio del producto es incorrecto
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+        </form>
+        <div style="width: 100%;">
+            <div style="width: max-content; margin: 0 auto">
+                <button (click)="guardarProducto()"  [disabled] = "!dataProducto.valid" mat-flat-button color="primary">
+                    Guardar
+                </button>
+                &nbsp;
+                <button (click)="limpiarFormProducto()" mat-flat-button color="accent">
+                    Limpiar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,16 @@
+<div *ngFor="let item of productosCarrito let i=index">
+    <div style="padding: 10px; margin: 30px; border:1px solid green;">
+        <p>Nombre: {{item.nombre}}</p>
+        <p>Precio Unitario: {{item.precio | currency}}</p>
+        <p>Cantidad a llevar: {{item.cantidad}}</p>
+        <p>Precio Final: {{item.precio*item.cantidad | currency}}</p>
+        <button  (click)="eliminarProductoenCarrito(i)">Eliminar</button>
+    </div>
+</div>
+<div style="width: 100%;">
+    <div style="width: max-content; margin: 0 auto;" >
+        <button (click)="pagar()" mat-stroked-button color="primary">Pagar</button>
+        &nbsp; &nbsp;
+        <button mat-stroked-button color="accent" (click)="regresarPaginaAnterior()">Cancelar</button>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+
+<div class="estiloContenedor">
+  <form [formGroup]="usuarioLogin" (ngSubmit)="onSubmit()" class="estiloForm">
+    <mat-form-field class="aparienciaInput">
+      <input matInput placeholder="Usuario" formControlName="usuario">
+      <mat-error *ngIf="usuarioLogin.get('usuario')?.errors?.['minlength']">
+        Minimo caracterRequerido
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="aparienciaInput">
+        <input matInput placeholder="Password" formControlName="password" type="password">
+    </mat-form-field>
+    <div class="disenoContenedorBoton">
+      <div class="button-Alinear">
+        <button mat-raised-button [disabled] = "!usuarioLogin.valid">Continuar</button>
+      </div>
+    </div>
+  </form>
+</div>

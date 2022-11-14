@@ -1,0 +1,24 @@
+
+<div>
+    <br>
+<div class="Container">
+    <div *ngFor="let productos of producto let i=index" class="styleDivContenedor">
+        <h3 class="text-aline-center">{{productos.descripcion}}</h3>
+        <img width="100%" height="250px" src="{{productos.url}}" alt="imagen laptop">
+        <br><br>
+        <p class="text-aline-rigth">Precio Unitario: {{productos.precio | currency}}</p>
+        <p id="{{productos.idProducto}}" class="text-aline-rigth">Cantidad disponible: {{productos.cantidadDisponible}}</p>
+        <br>
+        <div class="divBoton">
+            <div class="Containerbutton">
+                <button [disabled]="productos.cantidadDisponible==0" (click)="agrgarAccarito(productos.idProducto,productos.descripcion,1,productos.precio,i,productos.cantidadDisponible)" mat-raised-button color="primary">Añadir a carrito</button>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+<button [disabled]="productosCarritos.length == 0" [routerLink]="['/cliente/confirmar-entrega']" class="float">
+    <i  class="fa fa-whatsapp my-float">Productos seleccionados: {{productoSeleccionado}}</i> 
+</button>
+<br><br><br><br><br>
+</div>

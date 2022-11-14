@@ -1,0 +1,55 @@
+.styleDivContenedor{
+    display: inline-block;
+    width: 32%;
+    padding: 7px;
+    border: 1px solid black;
+    height: 100%;
+    border-radius: 10px;
+    margin: 1px;
+    margin-top: 10px;
+}
+.divBoton{
+    width: 100%;
+}
+.Containerbutton{
+    width: max-content;
+    margin: 0 auto;
+}
+.Container{
+    width: 90%;
+    height: max-content;
+    margin: 0 auto;
+}
+.text-aline-center{
+    text-align: center;
+}
+.text-aline-rigth{
+    text-align: right;
+    padding-right: 10px;
+}
+.float {
+    position: fixed;
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+    bottom: 80px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    border: none;
+}
+
+.float:hover {
+    text-decoration: none;
+    color: #25d366;
+    background-color: #fff;
+}
+
+.my-float {
+    margin-top: 16px;
+}

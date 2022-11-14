@@ -1,0 +1,21 @@
+.styloCOntainersaCeptarCmpra
+{
+    border: 1px solid black;
+    padding: 30px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.contenedorPrimero{
+    width: 100%;
+}
+h1{
+    text-align: center;
+}
+.contenedores-botones{
+    width: 100%;
+}
+.dposicionBoton{
+    width: max-content;
+    margin: 0 auto;
+}
